@@ -1,0 +1,123 @@
+import java.lang.*;
+import java.io.*;
+import java.util.*;
+class Node
+{
+  Node next;
+  int  data;
+  Node(int data)
+  {
+    this.data=data;
+    this.next=null;
+  }
+}
+class Main {
+  public static int count;
+  public static Node head;
+  public static void create(int data)
+  {
+    Node temp1=new Node(data);
+    if(head==null)
+    {
+      head=temp1;
+    }
+    else
+    {
+      Node temp2=head;
+      while(temp2.next!=null)
+      {
+        temp2=temp2.next;
+      }
+      temp2.next=temp1;
+    }
+    count++;
+  }
+  public static void print()
+  {
+    Node temp=head;
+    while(temp.next!=null)
+    {
+      System.out.println(temp.data);
+      temp=temp.next;
+    }
+  }
+  public static void print(Node temp)
+  {
+    if(temp == null)
+    {
+      return;
+    }
+    print(temp.next);
+    System.out.println(temp.data);
+  }
+  public static void print2(Node temp)
+  {
+    int i=1;
+    while(temp!=null)
+    {
+      if(i%2!=0)
+    {
+      System.out.println(temp.data);
+    }
+    i++;
+    temp=temp.next;
+    }
+    
+  }
+  public static void print3(Node temp)
+  {
+    int i=0;
+    if(count%2!=0)
+    {
+      while(i!=count/2)
+    {
+      temp=temp.next;
+      i++;
+    }
+    }
+    else
+    {
+      while(i!=count/2-1)
+      {
+        temp=temp.next;
+        i++;
+      }
+    }
+    System.out.println(temp.data);
+  }
+  public static void insertpos(int data,int pos,Node tempp)
+  {
+    if(pos>=count)
+    {
+      System.out.println("pos is greater");
+    }
+    else
+    {
+    Node temp=new Node(data);
+    int i=0;
+    while(i<pos)
+    {
+      tempp=tempp.next;
+    }
+    tempp.next=temp;
+    temp.next=tempp.next.next;
+    }
+  }
+  public static void delNode()
+  public static void main(String[] args) {
+    Scanner ss=new Scanner(System.in);
+    System.out.println("enter the data");
+    int a=ss.nextInt();
+    for(int i=0;i<a;i++)
+    {
+      //System.out.println(i);
+      int j=ss.nextInt();
+      create(j);
+    }
+    //print(head);
+    //print2(head);
+    print3(head);
+    insertpos(5, a, head);
+    print3(head);
+  }
+}

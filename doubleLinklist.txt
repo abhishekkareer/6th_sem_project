@@ -1,0 +1,133 @@
+import java.lang.*;
+import java.util.*;
+import java.io.*;
+class Node
+{
+    Node prev;
+    int data;
+    Node next;
+    Node(int data)
+    {
+        this.prev=null;
+        this.data=data;
+        this.next=null;
+    }
+}
+class DLinkList
+{
+     static Node head;
+     static Node tail;
+    public static void CreateNode(int data)
+    {
+        Node newNode=new Node(data);
+        if(head==null)
+        {
+            head=newNode;
+            tail=newNode;
+        }
+        else
+        {
+            tail.next=newNode;
+            newNode.prev=tail;
+            tail=newNode;
+        }
+    }
+    public static void Traverse()
+    {
+        if(isEmpty(head))
+        {
+            System.out.println("list is empty !");
+        }
+        else
+        {
+            Node temp=head;
+            while(temp!=null)
+            {
+                System.out.println(temp.data);
+                temp=temp.next;
+            }
+        }
+    }
+    public static void RTraverse()
+    {
+        if(isEmpty(tail))
+        {
+            System.out.println("list is empty !");
+        }
+        else
+        {
+            Node temp=tail;
+            while(temp!=null)
+            {
+                System.out.println(temp.data);
+                temp=temp.prev;
+            }
+        }
+    }
+    public static boolean isEmpty(Node temp)
+    {
+        if(temp==null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public static void insertStart(int data)
+    {
+        Node temp=new Node(data);
+        if(head==null)
+        {
+            head=null;
+            tail=null;
+        }
+        else
+        {
+            head.next=temp;
+            temp.prev=head;
+            head=temp;
+        }
+    }
+    public static void deleteStart()
+    {
+        if(isEmpty(head))
+        {
+            System.out.println("list not created");
+        }
+        else
+        {
+            Node temp=head;
+            temp.next.prev=null;
+            temp=temp.next;
+            head=temp;
+        }
+    }
+    public static void deleteEnd()
+    {
+        if(isEmpty(tail))
+        {
+            System.out.println("list not created");
+        }
+        else
+        {
+            Node temp=tail;
+            temp.prev.next=null;
+            temp=temp.prev;
+            tail=temp;
+        }
+    }
+}
+
+public class MyClass {
+    public static void main(String args[]) {
+        DLinkList dl=new DLinkList();
+        dl.CreateNode(10);
+        dl.CreateNode(20);
+        dl.CreateNode(30);
+        dl.CreateNode(40);
+        dl.CreateNode(50);
+        dl.deleteEnd();
+    }
+}
